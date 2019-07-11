@@ -84,7 +84,7 @@ def CompareStatus(case):
             myfile.seek(0)
             myfile.write(case_status)
             myfile.truncate()
-            sendMail(['umartinezparada@dxc.com'], ['ulimartinez96@gmail.com'], "uscis status", "case has changed to: " + case_status)
+            sendMail(['ulimartinez@webserver'], ['ulimartinez96@gmail.com'], "uscis status", "case has changed to: " + case_status)
 
 def GetCaseStatus(receipt):
     raw_html = MakeRequest(receipt).text
