@@ -93,29 +93,6 @@ def GetCaseStatus(receipt):
     case_number = GetCaseNumberFromCaseDetail(case_detail)
     return [case_number, case_status, change_date]
 
-def UpdateCaseStatus(num_range):
-    file_name = 'case_status_' + date.today().isoformat()
-    with open(file_name, 'w') as of:
-        print('receipt_num,case_status,change_date')
-        for case in num_range:
-            receipt = 'YSC' + str(case)
-            print('Fetching Case Status: ' + receipt)
-            [case_number, case_status, change_date] = GetCaseStatus(receipt)
-            print(case_number + ',' + case_status + ',' + change_date.isoformat())
-
-def UpdateCaseStatusAsync(num_range):
-    pool = Pool()
-    futures = []
-    for case in num_range:
-        receipt = 'YSC' + str(case)
-        print('Fetching Case Status: ' + receipt)
-        futures.append(pool.apply_async(GetCaseStatus, [receipt]))
-
-    file_name = 'case_status_' + date.today().isoformat()
-    with open(file_name, 'w') as of:
-        for future in futures:
-            res = future.get(timeout=10)
-            print(res[0] + ',' + res[1] + ',' + res[2].isoformat())
 
 def main():
     CompareStatus('YSC1990277366')
