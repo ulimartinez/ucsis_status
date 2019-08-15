@@ -95,7 +95,7 @@ def GetCaseStatus(receipt):
 
 
 def main():
-    CompareStatus('YSC1990277366')
+    CompareStatus('YSC1990377366')
 
 if __name__ == "__main__":
     main()
